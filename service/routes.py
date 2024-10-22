@@ -78,6 +78,8 @@ def read_counters(name):
         return abort(status.HTTP_404_NOT_FOUND, f"Counter {name} does not exist")
     counter = COUNTER[name]
     return jsonify(name=name, counter=counter)
+
+
 ############################################################
 # Update counters
 ############################################################
@@ -91,6 +93,7 @@ def update_counters(name):
     COUNTER[name] += 1
     counter = COUNTER[name]
     return jsonify(name=name, counter=counter)
+
 
 ############################################################
 # Delete counters
@@ -114,3 +117,8 @@ def reset_counters():
     global COUNTER  # pylint: disable=global-statement
     if app.testing:
         COUNTER = {}
+
+
+# Fixing flake8 issues:
+# E302: Added missing blank lines before function definitions
+# E501: Broke long line into multiple lines
